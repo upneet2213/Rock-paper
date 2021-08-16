@@ -23,7 +23,7 @@ function App() {
     if(score>0){
       setScore(score-1)
     }
-    setState('Lose')
+    setState('LOSE')
   }
   useEffect(()=>{
     if(isModalOpen){document.addEventListener('keydown', (e) => {
@@ -40,38 +40,46 @@ function App() {
     setIsModalOpen(true)
   }
   useEffect(()=>{
+    if(Object.keys(userChoice).length>0){
       const newItems=items.filter((item)=>JSON.stringify(item) !== JSON.stringify(userChoice) )
+      console.log(newItems)
       setPcChoice(newItems[Math.floor(Math.random()*items.length)])
+    }
+     
   },[userChoice])
   useEffect(()=>{
-    if(userChoice===items[0]){
-      if(pcChoice===items[1]){
-        lose()
+    if(Object.keys(userChoice).length>0){
+      if(userChoice===items[0]){
+        if(pcChoice===items[1]){
+          lose()
+        }
+        else{
+          win()
+        }
       }
-      else{
-        win()
+      else if(userChoice===items[1]){
+        if(pcChoice===items[0]){
+          win()
+        }
+        else{
+          lose()
+        }
+      }
+      else if(userChoice===items[2]){
+        if(pcChoice===items[0]){
+          lose()
+        }
+        else{
+          win()
+        }
       }
     }
-    else if(userChoice===items[1]){
-      if(pcChoice===items[0]){
-        win()
-      }
-      else{
-        lose()
-      }
-    }
-    else if(userChoice===items[2]){
-      if(pcChoice===items[0]){
-        lose()
-      }
-      else{
-        win()
-      }
-    }
-  },[userChoice])
+    
+  },[pcChoice])
   const newGame=()=>{
     setUserChoice({})
     setPcChoice({})
+    setState('')
   }
   return (
     <>

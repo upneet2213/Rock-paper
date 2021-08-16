@@ -3,7 +3,7 @@ import Token from './Token'
 
 
 const Result = ({userChoice,pcChoice,state,newGame}) => {
-    
+    console.log("World")
     return (
         <div className="results">
             <div >
