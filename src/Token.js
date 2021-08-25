@@ -1,12 +1,19 @@
-import React from 'react'
+import React from "react";
 
-const Token = ({item,setUserChoice,userChoice,pcChoice}) => {
-    const{image,name}= item;
-    return (
-        <div>
-            <button className={`btn btn-${name} ${item===userChoice?'user-choice':null} ${item===pcChoice?'pc-choice':null}`}><img src={image} alt="" onClick={()=>setUserChoice(item)}/></button>
-        </div>
-    )
-}
+const Token = ({ item, userChoice, pcChoice, showResult }) => {
+  const { image, name } = item;
+  return (
+    <div>
+      <button
+        className={`btn btn-${name} ${
+          item === userChoice ? "user-choice" : null
+        } ${item === pcChoice ? "pc-choice" : null}`}
+        onClick={() => showResult(item)}
+      >
+        <img src={image} alt="" />
+      </button>
+    </div>
+  );
+};
 
-export default Token
+export default Token;
